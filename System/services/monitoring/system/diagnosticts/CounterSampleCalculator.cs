@@ -15,6 +15,7 @@ namespace System.Diagnostics {
     using System.Security.Permissions;
     using System.Globalization;
     using System.Runtime.Versioning;
+    using NativeMethods = Microsoft.Win32.NativeMethods;
 
     /// <devdoc>
     ///     Set of utility functions for interpreting the counter data

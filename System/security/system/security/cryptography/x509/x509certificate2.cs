@@ -289,7 +289,7 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private SafeCertContextHandle m_safeCertContext = SafeCertContextHandle.InvalidHandle;
+        private Cryptography.SafeCertContextHandle m_safeCertContext = Cryptography.SafeCertContextHandle.InvalidHandle;
         
         private static int s_publicKeyOffset;
 
@@ -845,7 +845,7 @@ namespace System.Security.Cryptography.X509Certificates {
                     string friendlyName = this.GetKeyAlgorithm();
                     byte[] parameters = this.GetKeyAlgorithmParameters();
                     byte[] keyValue = this.GetPublicKey();
-                    Oid oid = new Oid(friendlyName, OidGroup.PublicKeyAlgorithm, true);
+                    Oid oid = new Oid(friendlyName, Cryptography.OidGroup.PublicKeyAlgorithm, true);
                     m_publicKey = new PublicKey(oid, new AsnEncodedData(oid, parameters), new AsnEncodedData(oid, keyValue));
                 }
 
@@ -1098,7 +1098,7 @@ namespace System.Security.Cryptography.X509Certificates {
             if (!m_safeCertContext.IsInvalid) {
                 // Free the current certificate handle
                 m_safeCertContext.Dispose();
-                m_safeCertContext = SafeCertContextHandle.InvalidHandle;
+                m_safeCertContext = Cryptography.SafeCertContextHandle.InvalidHandle;
             }
             base.Reset();
         }
@@ -1153,7 +1153,7 @@ namespace System.Security.Cryptography.X509Certificates {
         // Internal
         //
 
-        internal SafeCertContextHandle CertContext {
+        internal Cryptography.SafeCertContextHandle CertContext {
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
 #endif
@@ -1165,7 +1165,7 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        internal static bool GetPrivateKeyInfo (SafeCertContextHandle safeCertContext, ref CspParameters parameters) {
+        internal static bool GetPrivateKeyInfo (Cryptography.SafeCertContextHandle safeCertContext, ref CspParameters parameters) {
             SafeLocalAllocHandle ptr = SafeLocalAllocHandle.InvalidHandle;
             uint cbData = 0;
             if (!CAPI.CertGetCertificateContextProperty(safeCertContext,
@@ -1273,16 +1273,16 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
 #endif
-        private static unsafe Oid GetSignatureAlgorithm (SafeCertContextHandle safeCertContextHandle) {
+        private static unsafe Oid GetSignatureAlgorithm (Cryptography.SafeCertContextHandle safeCertContextHandle) {
             CAPI.CERT_CONTEXT pCertContext = *((CAPI.CERT_CONTEXT*) safeCertContextHandle.DangerousGetHandle());
             CAPI.CERT_INFO pCertInfo = (CAPI.CERT_INFO) Marshal.PtrToStructure(pCertContext.pCertInfo, typeof(CAPI.CERT_INFO));
-            return new Oid(pCertInfo.SignatureAlgorithm.pszObjId, OidGroup.SignatureAlgorithm, false);
+            return new Oid(pCertInfo.SignatureAlgorithm.pszObjId, Cryptography.OidGroup.SignatureAlgorithm, false);
         }
 
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
 #endif
-        private static unsafe uint GetVersion (SafeCertContextHandle safeCertContextHandle) {
+        private static unsafe uint GetVersion (Cryptography.SafeCertContextHandle safeCertContextHandle) {
             CAPI.CERT_CONTEXT pCertContext = *((CAPI.CERT_CONTEXT*) safeCertContextHandle.DangerousGetHandle());
             CAPI.CERT_INFO pCertInfo = (CAPI.CERT_INFO) Marshal.PtrToStructure(pCertContext.pCertInfo, typeof(CAPI.CERT_INFO));
             return (pCertInfo.dwVersion + 1);
@@ -1341,7 +1341,7 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
 #endif
-        private static unsafe void SetFriendlyNameExtendedProperty (SafeCertContextHandle safeCertContextHandle, string name) {
+        private static unsafe void SetFriendlyNameExtendedProperty (Cryptography.SafeCertContextHandle safeCertContextHandle, string name) {
             SafeLocalAllocHandle ptr = X509Utils.StringToUniPtr(name);
             using (ptr) {
                 CAPI.CRYPTOAPI_BLOB DataBlob = new CAPI.CRYPTOAPI_BLOB();
@@ -1359,7 +1359,7 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
 #endif
-        private static unsafe void SetPrivateKeyProperty (SafeCertContextHandle safeCertContextHandle, ICspAsymmetricAlgorithm asymmetricAlgorithm) {
+        private static unsafe void SetPrivateKeyProperty (Cryptography.SafeCertContextHandle safeCertContextHandle, ICspAsymmetricAlgorithm asymmetricAlgorithm) {
             SafeLocalAllocHandle ptr = SafeLocalAllocHandle.InvalidHandle;
             if (asymmetricAlgorithm != null) {
                 CAPI.CRYPT_KEY_PROV_INFO keyProvInfo = new CAPI.CRYPT_KEY_PROV_INFO();

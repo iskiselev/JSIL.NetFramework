@@ -244,7 +244,7 @@ namespace System.Security.Cryptography {
 #if FEATURE_CORESYSTEM
             [SecurityCritical]
 #endif
-            public static extern bool CryptAcquireContext([Out] out SafeCspHandle phProv,
+            public static extern bool CryptAcquireContext([Out] out Microsoft.Win32.SafeHandles.SafeCspHandle phProv,
                                                           string pszContainer,
                                                           string pszProvider,
                                                           ProviderType dwProvType,
@@ -258,7 +258,7 @@ namespace System.Security.Cryptography {
 #if FEATURE_CORESYSTEM
             [SecurityCritical]
 #endif
-            public static extern bool CryptCreateHash(SafeCspHandle hProv,
+            public static extern bool CryptCreateHash(Microsoft.Win32.SafeHandles.SafeCspHandle hProv,
                                                       AlgorithmId Algid,
                                                       SafeCapiKeyHandle hKey,
                                                       int dwFlags,
@@ -334,7 +334,7 @@ namespace System.Security.Cryptography {
 #if FEATURE_CORESYSTEM
             [SecurityCritical]
 #endif
-            public static extern bool CryptGenKey(SafeCspHandle hProv,
+            public static extern bool CryptGenKey(Microsoft.Win32.SafeHandles.SafeCspHandle hProv,
                                                   AlgorithmId Algid,
                                                   KeyFlags dwFlags,
                                                   [Out] out SafeCapiKeyHandle phKey);
@@ -347,7 +347,7 @@ namespace System.Security.Cryptography {
 #if FEATURE_CORESYSTEM
             [SecurityCritical]
 #endif
-            public static extern bool CryptGenRandom(SafeCspHandle hProv,
+            public static extern bool CryptGenRandom(Microsoft.Win32.SafeHandles.SafeCspHandle hProv,
                                                      int dwLen,
                                                      [Out, MarshalAs(UnmanagedType.LPArray)] byte[] pbBuffer);
 
@@ -373,7 +373,7 @@ namespace System.Security.Cryptography {
 #if FEATURE_CORESYSTEM
             [SecurityCritical]
 #endif
-            public static extern bool CryptGetProvParam(SafeCspHandle hProv,
+            public static extern bool CryptGetProvParam(Microsoft.Win32.SafeHandles.SafeCspHandle hProv,
                                                         ProviderParameter dwParam,
                                                         IntPtr pbData,
                                                         [In, Out] ref int pdwDataLen,
@@ -400,7 +400,7 @@ namespace System.Security.Cryptography {
 #if FEATURE_CORESYSTEM
             [SecurityCritical]
 #endif
-            public static extern bool CryptImportKey(SafeCspHandle hProv,
+            public static extern bool CryptImportKey(Microsoft.Win32.SafeHandles.SafeCspHandle hProv,
                                                      [MarshalAs(UnmanagedType.LPArray)] byte[] pbData,
                                                      int dwDataLen,
                                                      SafeCapiKeyHandle hPubKey,
@@ -493,7 +493,7 @@ namespace System.Security.Cryptography {
         /// </summary>
         [System.Security.SecurityCritical]
         [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "Reviewed")]
-        internal static SafeCspHandle AcquireCsp(string keyContainer,
+        internal static Microsoft.Win32.SafeHandles.SafeCspHandle AcquireCsp(string keyContainer,
                                                  string providerName,
                                                  ProviderType providerType,
                                                  CryptAcquireContextFlags flags,
@@ -502,7 +502,7 @@ namespace System.Security.Cryptography {
                              !Contract.Result<SafeCspHandle>().IsInvalid &&
                              !Contract.Result<SafeCspHandle>().IsClosed);
 
-            SafeCspHandle cspHandle = null;
+            Microsoft.Win32.SafeHandles.SafeCspHandle cspHandle = null;
             if (!UnsafeNativeMethods.CryptAcquireContext(out cspHandle,
                                                          keyContainer,
                                                          providerName,
@@ -630,7 +630,7 @@ namespace System.Security.Cryptography {
         /// </summary>
         [System.Security.SecurityCritical]
         [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "Reviewed")]
-        internal static T GetProviderParameterStruct<T>(SafeCspHandle provider,
+        internal static T GetProviderParameterStruct<T>(Microsoft.Win32.SafeHandles.SafeCspHandle provider,
                                                         ProviderParameter parameter,
                                                         ProviderParameterFlags flags) where T : struct {
             Contract.Requires(provider != null);
@@ -704,7 +704,7 @@ namespace System.Security.Cryptography {
         /// </summary>
         [System.Security.SecurityCritical]
         [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "Reviewed")]
-        internal static SafeCapiKeyHandle ImportSymmetricKey(SafeCspHandle provider, AlgorithmId algorithm, byte[] key) {
+        internal static SafeCapiKeyHandle ImportSymmetricKey(Microsoft.Win32.SafeHandles.SafeCspHandle provider, AlgorithmId algorithm, byte[] key) {
             Contract.Requires(provider != null);
             Contract.Requires(((int)algorithm & (int)AlgorithmClass.DataEncryption) == (int)AlgorithmClass.DataEncryption);
             Contract.Requires(key != null);

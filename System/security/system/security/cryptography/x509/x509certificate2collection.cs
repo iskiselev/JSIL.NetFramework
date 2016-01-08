@@ -19,7 +19,8 @@ namespace System.Security.Cryptography.X509Certificates {
     using System.Security.Permissions;
     using System.Text;
     using System.Runtime.Versioning;
-
+    using IEnumerable = System.Collections.IEnumerable;
+    using IEnumerator = System.Collections.IEnumerator;
     using _FILETIME = System.Runtime.InteropServices.ComTypes.FILETIME;
 
     public enum X509FindType {
@@ -182,9 +183,9 @@ namespace System.Security.Cryptography.X509Certificates {
             sp.Assert();
 #endif
 
-            SafeCertStoreHandle safeSourceStoreHandle = X509Utils.ExportToMemoryStore(this);
+            Cryptography.SafeCertStoreHandle safeSourceStoreHandle = X509Utils.ExportToMemoryStore(this);
 
-            SafeCertStoreHandle safeTargetStoreHandle = FindCertInStore(safeSourceStoreHandle, findType, findValue, validOnly);
+            Cryptography.SafeCertStoreHandle safeTargetStoreHandle = FindCertInStore(safeSourceStoreHandle, findType, findValue, validOnly);
             X509Certificate2Collection collection = X509Utils.GetCertificates(safeTargetStoreHandle);
 
             safeTargetStoreHandle.Dispose();
@@ -202,7 +203,7 @@ namespace System.Security.Cryptography.X509Certificates {
 #endif
         public void Import(byte[] rawData, string password, X509KeyStorageFlags keyStorageFlags) {
             uint dwFlags = X509Utils.MapKeyStorageFlags(keyStorageFlags);
-            SafeCertStoreHandle safeCertStoreHandle = SafeCertStoreHandle.InvalidHandle;
+            Cryptography.SafeCertStoreHandle safeCertStoreHandle = Cryptography.SafeCertStoreHandle.InvalidHandle;
 
 #if !FEATURE_CORESYSTEM
             //
@@ -241,7 +242,7 @@ namespace System.Security.Cryptography.X509Certificates {
 #endif
         public void Import(string fileName, string password, X509KeyStorageFlags keyStorageFlags) {
             uint dwFlags = X509Utils.MapKeyStorageFlags(keyStorageFlags);
-            SafeCertStoreHandle safeCertStoreHandle = SafeCertStoreHandle.InvalidHandle;
+            Cryptography.SafeCertStoreHandle safeCertStoreHandle = Cryptography.SafeCertStoreHandle.InvalidHandle;
 
 #if !FEATURE_CORESYSTEM
             //
@@ -284,7 +285,7 @@ namespace System.Security.Cryptography.X509Certificates {
             sp.Assert();
 #endif
 
-            SafeCertStoreHandle safeCertStoreHandle = X509Utils.ExportToMemoryStore(this);
+            Cryptography.SafeCertStoreHandle safeCertStoreHandle = X509Utils.ExportToMemoryStore(this);
 
             byte[] result = ExportCertificatesToBlob(safeCertStoreHandle, contentType, password);
             safeCertStoreHandle.Dispose();
@@ -294,8 +295,8 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private unsafe static byte[] ExportCertificatesToBlob(SafeCertStoreHandle safeCertStoreHandle, X509ContentType contentType, string password) {
-            SafeCertContextHandle safeCertContextHandle = SafeCertContextHandle.InvalidHandle;
+        private unsafe static byte[] ExportCertificatesToBlob(Cryptography.SafeCertStoreHandle safeCertStoreHandle, X509ContentType contentType, string password) {
+            Cryptography.SafeCertContextHandle safeCertContextHandle = Cryptography.SafeCertContextHandle.InvalidHandle;
             uint dwSaveAs = CAPI.CERT_STORE_SAVE_AS_PKCS7;
             byte[] pbBlob = null;
             CAPI.CRYPTOAPI_BLOB DataBlob = new CAPI.CRYPTOAPI_BLOB();
@@ -394,11 +395,11 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        internal delegate int FindProcDelegate (SafeCertContextHandle safeCertContextHandle, object pvCallbackData);
+        internal delegate int FindProcDelegate (Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData);
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
 #endif
-        private unsafe static SafeCertStoreHandle FindCertInStore(SafeCertStoreHandle safeSourceStoreHandle, X509FindType findType, Object findValue, bool validOnly) {
+        private unsafe static Cryptography.SafeCertStoreHandle FindCertInStore(Cryptography.SafeCertStoreHandle safeSourceStoreHandle, X509FindType findType, Object findValue, bool validOnly) {
             if (findValue == null)
                 throw new ArgumentNullException("findValue");
 
@@ -508,7 +509,7 @@ namespace System.Security.Cryptography.X509Certificates {
                 if (findValue.GetType() != typeof(string))
                     throw new CryptographicException(SR.GetString(SR.Cryptography_X509_InvalidFindValue));
                 // If we were passed the friendly name, retrieve the value string.
-                oidValue = X509Utils.FindOidInfoWithFallback(CAPI.CRYPT_OID_INFO_NAME_KEY, (string) findValue, OidGroup.Policy);
+                oidValue = X509Utils.FindOidInfoWithFallback(CAPI.CRYPT_OID_INFO_NAME_KEY, (string) findValue, Cryptography.OidGroup.Policy);
                 if (oidValue == null) {
                     oidValue = (string) findValue;
                     X509Utils.ValidateOidValue(oidValue);
@@ -521,7 +522,7 @@ namespace System.Security.Cryptography.X509Certificates {
                 if (findValue.GetType() != typeof(string))
                     throw new CryptographicException(SR.GetString(SR.Cryptography_X509_InvalidFindValue));
                 // If we were passed the friendly name, retrieve the value string.
-                oidValue = X509Utils.FindOidInfoWithFallback(CAPI.CRYPT_OID_INFO_NAME_KEY, (string)findValue, OidGroup.Policy);
+                oidValue = X509Utils.FindOidInfoWithFallback(CAPI.CRYPT_OID_INFO_NAME_KEY, (string)findValue, Cryptography.OidGroup.Policy);
                 if (oidValue == null) {
                     oidValue = (string) findValue;
                     X509Utils.ValidateOidValue(oidValue);
@@ -534,7 +535,7 @@ namespace System.Security.Cryptography.X509Certificates {
                 if (findValue.GetType() != typeof(string))
                     throw new CryptographicException(SR.GetString(SR.Cryptography_X509_InvalidFindValue));
                 // If we were passed the friendly name, retrieve the value string.
-                oidValue = X509Utils.FindOidInfoWithFallback(CAPI.CRYPT_OID_INFO_NAME_KEY, (string)findValue, OidGroup.ExtensionOrAttribute);
+                oidValue = X509Utils.FindOidInfoWithFallback(CAPI.CRYPT_OID_INFO_NAME_KEY, (string)findValue, Cryptography.OidGroup.ExtensionOrAttribute);
                 if (oidValue == null) {
                     oidValue = (string) findValue;
                     X509Utils.ValidateOidValue(oidValue);
@@ -589,7 +590,7 @@ namespace System.Security.Cryptography.X509Certificates {
             }
 
             // First, create a memory store
-            SafeCertStoreHandle safeTargetStoreHandle = CAPI.CertOpenStore(new IntPtr(CAPI.CERT_STORE_PROV_MEMORY), 
+            Cryptography.SafeCertStoreHandle safeTargetStoreHandle = CAPI.CertOpenStore(new IntPtr(CAPI.CERT_STORE_PROV_MEMORY), 
                                                                            CAPI.X509_ASN_ENCODING | CAPI.PKCS_7_ASN_ENCODING, 
                                                                            IntPtr.Zero, 
                                                                            CAPI.CERT_STORE_ENUM_ARCHIVED_FLAG | CAPI.CERT_STORE_CREATE_NEW_FLAG, 
@@ -615,19 +616,19 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
 #endif
-        private static void FindByCert(SafeCertStoreHandle safeSourceStoreHandle, 
+        private static void FindByCert(Cryptography.SafeCertStoreHandle safeSourceStoreHandle, 
                                         uint dwFindType, 
                                         IntPtr pvFindPara, 
                                         bool validOnly, 
                                         FindProcDelegate pfnCertCallback1, 
                                         FindProcDelegate pfnCertCallback2, 
                                         object pvCallbackData1, 
-                                        object pvCallbackData2, 
-                                        SafeCertStoreHandle safeTargetStoreHandle) {
+                                        object pvCallbackData2,
+                                        Cryptography.SafeCertStoreHandle safeTargetStoreHandle) {
 
             int hr = CAPI.S_OK;
 
-            SafeCertContextHandle pEnumContext = SafeCertContextHandle.InvalidHandle;
+            Cryptography.SafeCertContextHandle pEnumContext = Cryptography.SafeCertContextHandle.InvalidHandle;
             pEnumContext = CAPI.CertFindCertificateInStore(safeSourceStoreHandle, 
                                                            CAPI.X509_ASN_ENCODING | CAPI.PKCS_7_ASN_ENCODING,
                                                            0, 
@@ -675,8 +676,8 @@ namespace System.Security.Cryptography.X509Certificates {
 
                 if (!CAPI.CertAddCertificateLinkToStore(safeTargetStoreHandle, 
                                                         pEnumContext, 
-                                                        CAPI.CERT_STORE_ADD_ALWAYS, 
-                                                        SafeCertContextHandle.InvalidHandle)) {
+                                                        CAPI.CERT_STORE_ADD_ALWAYS,
+                                                        Cryptography.SafeCertContextHandle.InvalidHandle)) {
                     hr = Marshal.GetHRForLastWin32Error();
                     break;
                 }
@@ -708,7 +709,7 @@ skip:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private static unsafe int FindSubjectDistinguishedNameCallback(SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
+        private static unsafe int FindSubjectDistinguishedNameCallback(Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
             string rdn = CAPI.GetCertNameInfo(safeCertContextHandle, 0, CAPI.CERT_NAME_RDN_TYPE);
             if (String.Compare(rdn, (string) pvCallbackData, StringComparison.OrdinalIgnoreCase) != 0)
                 return CAPI.S_FALSE;
@@ -722,7 +723,7 @@ skip:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private static unsafe int FindIssuerDistinguishedNameCallback(SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
+        private static unsafe int FindIssuerDistinguishedNameCallback(Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
             string rdn = CAPI.GetCertNameInfo(safeCertContextHandle, CAPI.CERT_NAME_ISSUER_FLAG, CAPI.CERT_NAME_RDN_TYPE);
             if (String.Compare(rdn, (string) pvCallbackData, StringComparison.OrdinalIgnoreCase) != 0)
                 return CAPI.S_FALSE;
@@ -737,7 +738,7 @@ skip:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private static unsafe int FindSerialNumberCallback(SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
+        private static unsafe int FindSerialNumberCallback(Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
             CAPI.CERT_CONTEXT pCertContext = *((CAPI.CERT_CONTEXT*) safeCertContextHandle.DangerousGetHandle());
             CAPI.CERT_INFO pCertInfo = (CAPI.CERT_INFO) Marshal.PtrToStructure(pCertContext.pCertInfo, typeof(CAPI.CERT_INFO));
 
@@ -765,7 +766,7 @@ skip:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private static unsafe int FindTimeValidCallback(SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
+        private static unsafe int FindTimeValidCallback(Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
             _FILETIME ft = (_FILETIME) pvCallbackData;
             CAPI.CERT_CONTEXT pCertContext = *((CAPI.CERT_CONTEXT*) safeCertContextHandle.DangerousGetHandle());
             if (CAPI.CertVerifyTimeValidity(ref ft, pCertContext.pCertInfo) == 0)
@@ -782,7 +783,7 @@ skip:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private static unsafe int FindTimeNotAfterCallback(SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
+        private static unsafe int FindTimeNotAfterCallback(Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
             _FILETIME ft = (_FILETIME) pvCallbackData;
             CAPI.CERT_CONTEXT pCertContext = *((CAPI.CERT_CONTEXT*) safeCertContextHandle.DangerousGetHandle());
             if (CAPI.CertVerifyTimeValidity(ref ft, pCertContext.pCertInfo) == 1)
@@ -799,7 +800,7 @@ skip:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private static unsafe int FindTimeNotBeforeCallback(SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
+        private static unsafe int FindTimeNotBeforeCallback(Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
             _FILETIME ft = (_FILETIME) pvCallbackData;
             CAPI.CERT_CONTEXT pCertContext = *((CAPI.CERT_CONTEXT*) safeCertContextHandle.DangerousGetHandle());
             if (CAPI.CertVerifyTimeValidity(ref ft, pCertContext.pCertInfo) == -1)
@@ -818,7 +819,7 @@ skip:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private static unsafe int FindTemplateNameCallback(SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
+        private static unsafe int FindTemplateNameCallback(Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
             IntPtr pV1Template = IntPtr.Zero;
             IntPtr pV2Template = IntPtr.Zero;
 
@@ -870,7 +871,7 @@ skip:
                 if (result) {
                     CAPI.CERT_TEMPLATE_EXT pTemplate = (CAPI.CERT_TEMPLATE_EXT) Marshal.PtrToStructure(decoded.DangerousGetHandle(), typeof(CAPI.CERT_TEMPLATE_EXT));
                     // If we were passed the friendly name, retrieve the value string.
-                    string oidValue = X509Utils.FindOidInfoWithFallback(CAPI.CRYPT_OID_INFO_NAME_KEY, (string)pvCallbackData, OidGroup.Template);
+                    string oidValue = X509Utils.FindOidInfoWithFallback(CAPI.CRYPT_OID_INFO_NAME_KEY, (string)pvCallbackData, Cryptography.OidGroup.Template);
                     if (oidValue == null)
                         oidValue = (string) pvCallbackData;
                     if (String.Compare(pTemplate.pszObjId, oidValue, StringComparison.OrdinalIgnoreCase) == 0)
@@ -889,7 +890,7 @@ skip:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private static unsafe int FindApplicationPolicyCallback(SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
+        private static unsafe int FindApplicationPolicyCallback(Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
             string eku = (string) pvCallbackData;
             if (eku.Length == 0)
                 return CAPI.S_FALSE;
@@ -926,7 +927,7 @@ skip:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private static unsafe int FindCertificatePolicyCallback(SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
+        private static unsafe int FindCertificatePolicyCallback(Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
             string certPolicy = (string) pvCallbackData;
             if (certPolicy.Length == 0)
                 return CAPI.S_FALSE;
@@ -971,7 +972,7 @@ skip:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private static unsafe int FindExtensionCallback(SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
+        private static unsafe int FindExtensionCallback(Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
             CAPI.CERT_CONTEXT pCertContext = *((CAPI.CERT_CONTEXT*) safeCertContextHandle.DangerousGetHandle());
             CAPI.CERT_INFO pCertInfo = (CAPI.CERT_INFO) Marshal.PtrToStructure(pCertContext.pCertInfo, typeof(CAPI.CERT_INFO));
 
@@ -994,7 +995,7 @@ skip:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private static unsafe int FindKeyUsageCallback(SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
+        private static unsafe int FindKeyUsageCallback(Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
             CAPI.CERT_CONTEXT pCertContext = *((CAPI.CERT_CONTEXT*) safeCertContextHandle.DangerousGetHandle());
             uint dwUsages = 0;
             if (!CAPI.CertGetIntendedKeyUsage(CAPI.X509_ASN_ENCODING | CAPI.PKCS_7_ASN_ENCODING, 
@@ -1018,7 +1019,7 @@ skip:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private static unsafe int FindSubjectKeyIdentifierCallback(SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
+        private static unsafe int FindSubjectKeyIdentifierCallback(Cryptography.SafeCertContextHandle safeCertContextHandle, object pvCallbackData) {
             SafeLocalAllocHandle ptr = SafeLocalAllocHandle.InvalidHandle;
             // We look for the Key Id extended property 
             // this will first look if there is a V3 SKI extension
@@ -1069,9 +1070,9 @@ skip:
 #if !FEATURE_CORESYSTEM
         [ResourceConsumption(ResourceScope.Machine, ResourceScope.Machine)]
 #endif
-        private unsafe static SafeCertStoreHandle LoadStoreFromBlob(byte[] rawData, string password, uint dwFlags, bool persistKeyContainers) {
+        private unsafe static Cryptography.SafeCertStoreHandle LoadStoreFromBlob(byte[] rawData, string password, uint dwFlags, bool persistKeyContainers) {
             uint contentType = 0;
-            SafeCertStoreHandle safeCertStoreHandle = SafeCertStoreHandle.InvalidHandle;
+            Cryptography.SafeCertStoreHandle safeCertStoreHandle = Cryptography.SafeCertStoreHandle.InvalidHandle;
             if (!CAPI.CryptQueryObject(CAPI.CERT_QUERY_OBJECT_BLOB,
                                        rawData,
                                        X509_STORE_CONTENT_FLAGS,
@@ -1107,9 +1108,9 @@ skip:
 #if !FEATURE_CORESYSTEM
         [ResourceConsumption(ResourceScope.Machine)]
 #endif
-        private unsafe static SafeCertStoreHandle LoadStoreFromFile(string fileName, string password, uint dwFlags, bool persistKeyContainers) {
+        private unsafe static Cryptography.SafeCertStoreHandle LoadStoreFromFile(string fileName, string password, uint dwFlags, bool persistKeyContainers) {
             uint contentType = 0;
-            SafeCertStoreHandle safeCertStoreHandle = SafeCertStoreHandle.InvalidHandle;
+            Cryptography.SafeCertStoreHandle safeCertStoreHandle = Cryptography.SafeCertStoreHandle.InvalidHandle;
             if (!CAPI.CryptQueryObject(CAPI.CERT_QUERY_OBJECT_FILE,
                                        fileName,
                                        X509_STORE_CONTENT_FLAGS,

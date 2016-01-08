@@ -26,7 +26,7 @@ namespace System.Security.Cryptography {
         private static volatile int s_defaultKeySize;
 
         [SecurityCritical]
-        private SafeCspHandle m_cspHandle;
+        private Microsoft.Win32.SafeHandles.SafeCspHandle m_cspHandle;
 
         // Note that keys are stored in CAPI rather than directly in the KeyValue property, which should not
         // be used to retrieve the key value directly.
@@ -296,7 +296,7 @@ namespace System.Security.Cryptography {
         ///     key size values.
         /// </summary>
         [System.Security.SecurityCritical]
-        private static KeySizes[] FindSupportedKeySizes(SafeCspHandle csp, out int defaultKeySize) {
+        private static KeySizes[] FindSupportedKeySizes(Microsoft.Win32.SafeHandles.SafeCspHandle csp, out int defaultKeySize) {
             Contract.Requires(csp != null);
             Contract.Ensures(Contract.Result<KeySizes[]>() != null);
 

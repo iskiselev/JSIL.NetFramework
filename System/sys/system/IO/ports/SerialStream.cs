@@ -50,6 +50,8 @@ using Microsoft.Win32.SafeHandles;
 
 namespace System.IO.Ports
 {
+    using NativeMethods = Microsoft.Win32.NativeMethods;
+
     internal sealed class SerialStream : Stream
     {
         const int errorEvents = (int) (SerialError.Frame | SerialError.Overrun |

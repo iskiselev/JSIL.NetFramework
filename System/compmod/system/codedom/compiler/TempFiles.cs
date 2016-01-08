@@ -21,6 +21,7 @@ namespace System.CodeDom.Compiler {
     using System.Security.Cryptography;
     using System.Globalization;
     using System.Runtime.Versioning;
+    using NativeMethods = Microsoft.Win32.NativeMethods;
 
     /// <devdoc>
     ///    <para>Represents a collection of temporary file names that are all based on a

@@ -13,6 +13,7 @@ namespace System.Diagnostics {
     using System.IO;
     using System.Runtime.Serialization;
     using System.Runtime.Versioning;
+    using NativeMethods = Microsoft.Win32.NativeMethods;
 
     internal class PerformanceCounterLib {
         internal const string PerfShimName = "netfxperf.dll";

@@ -25,6 +25,8 @@ using System.Threading;
 
 namespace System.Security.AccessControl
 {
+    using NativeMethods = Microsoft.Win32.NativeMethods;
+
     // Derive this list of values from winnt.h and MSDN docs:
     // http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dllproc/base/synchronization_object_security_and_access_rights.asp
 

@@ -47,7 +47,7 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        private SafeCertStoreHandle m_safeCertStoreHandle = SafeCertStoreHandle.InvalidHandle;
+        private Cryptography.SafeCertStoreHandle m_safeCertStoreHandle = Cryptography.SafeCertStoreHandle.InvalidHandle;
 
         public X509Store () : this("MY", StoreLocation.CurrentUser) {}
 
@@ -198,7 +198,7 @@ namespace System.Security.Cryptography.X509Certificates {
             if (!CAPI.CertAddCertificateContextToStore(m_safeCertStoreHandle,
                                                        certificate.CertContext,
                                                        CAPI.CERT_STORE_ADD_REPLACE_EXISTING_INHERIT_PROPERTIES,
-                                                       SafeCertContextHandle.InvalidHandle))
+                                                       Cryptography.SafeCertContextHandle.InvalidHandle))
                 throw new CryptographicException(Marshal.GetLastWin32Error());
         }
 
@@ -266,7 +266,7 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
 #endif
-        private static void RemoveCertificateFromStore(SafeCertStoreHandle safeCertStoreHandle, SafeCertContextHandle safeCertContext) {
+        private static void RemoveCertificateFromStore(Cryptography.SafeCertStoreHandle safeCertStoreHandle, Cryptography.SafeCertContextHandle safeCertContext) {
             if (safeCertContext == null || safeCertContext.IsInvalid)
                 return;
 
@@ -274,12 +274,12 @@ namespace System.Security.Cryptography.X509Certificates {
                 throw new CryptographicException(SR.GetString(SR.Cryptography_X509_StoreNotOpen));
 
             // Find the certificate in the store.
-            SafeCertContextHandle safeCertContext2 = CAPI.CertFindCertificateInStore(safeCertStoreHandle, 
+            Cryptography.SafeCertContextHandle safeCertContext2 = CAPI.CertFindCertificateInStore(safeCertStoreHandle, 
                                                                                      CAPI.X509_ASN_ENCODING | CAPI.PKCS_7_ASN_ENCODING,
                                                                                      0, 
                                                                                      CAPI.CERT_FIND_EXISTING, 
                                                                                      safeCertContext.DangerousGetHandle(),
-                                                                                     SafeCertContextHandle.InvalidHandle);
+                                                                                     Cryptography.SafeCertContextHandle.InvalidHandle);
 
             // The certificate is not present in the store, simply return.
             if (safeCertContext2 == null || safeCertContext2.IsInvalid)

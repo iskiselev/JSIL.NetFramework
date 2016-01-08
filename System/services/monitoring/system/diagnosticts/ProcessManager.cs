@@ -18,6 +18,7 @@ namespace System.Diagnostics {
     using System.Security.Principal;
     using System.Runtime.Versioning;
     using System.Diagnostics.Contracts;
+    using NativeMethods = Microsoft.Win32.NativeMethods;
 
     /// <devdoc>
     ///     This class finds the main window of a process.  It needs to be

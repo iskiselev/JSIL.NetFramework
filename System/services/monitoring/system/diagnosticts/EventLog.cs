@@ -27,6 +27,8 @@ namespace System.Diagnostics {
     using System.Runtime.Versioning;
     using System.Runtime.CompilerServices;
     using System.Diagnostics.CodeAnalysis;
+    using NativeMethods = Microsoft.Win32.NativeMethods;
+    using SafeLibraryHandle = Microsoft.Win32.SafeLibraryHandle;
 
     /// <devdoc>
     ///    <para>

@@ -24,7 +24,8 @@ namespace System.Diagnostics {
     using System.Security.Permissions;
     using System.Security.Principal;
     using System.Runtime.Versioning;
-    
+    using NativeMethods = Microsoft.Win32.NativeMethods;
+
     /// <devdoc>
     ///    <para>
     ///       Provides access to local and remote

@@ -20,6 +20,8 @@ namespace System.Security.Cryptography.X509Certificates {
     using System.Security.Permissions;
     using System.Text;
     using Microsoft.Win32.SafeHandles;
+    using SafeLocalAllocHandle = System.Security.Cryptography.SafeLocalAllocHandle;
+    using SafeCertStoreHandle = System.Security.Cryptography.SafeCertStoreHandle;
 
     internal class X509Utils {
         private X509Utils () {}
@@ -300,7 +302,7 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
 #endif
-        internal static SafeCertStoreHandle ExportToMemoryStore (X509Certificate2Collection collection) {
+        internal static Cryptography.SafeCertStoreHandle ExportToMemoryStore (X509Certificate2Collection collection) {
             //
             // We need to Assert all StorePermission flags since this is a memory store and we want 
             // semi-trusted code to be able to export certificates to a memory store.
@@ -311,7 +313,7 @@ namespace System.Security.Cryptography.X509Certificates {
             sp.Assert();
 #endif
 
-            SafeCertStoreHandle safeCertStoreHandle = SafeCertStoreHandle.InvalidHandle;
+            Cryptography.SafeCertStoreHandle safeCertStoreHandle = Cryptography.SafeCertStoreHandle.InvalidHandle;
 
             // we always want to use CERT_STORE_ENUM_ARCHIVED_FLAG since we want to preserve the collection in this operation.
             // By default, Archived certificates will not be included.
@@ -334,7 +336,7 @@ namespace System.Security.Cryptography.X509Certificates {
                 if (!CAPI.CertAddCertificateLinkToStore(safeCertStoreHandle,
                                                         x509.CertContext,
                                                         CAPI.CERT_STORE_ADD_ALWAYS,
-                                                        SafeCertContextHandle.InvalidHandle))
+                                                        Cryptography.SafeCertContextHandle.InvalidHandle))
                     throw new CryptographicException(Marshal.GetLastWin32Error());
             }
 
@@ -353,7 +355,7 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
 #endif
-        internal static string FindOidInfo(uint keyType, string keyValue, OidGroup oidGroup) {
+        internal static string FindOidInfo(uint keyType, string keyValue, Cryptography.OidGroup oidGroup) {
             if (keyValue == null)
                 throw new ArgumentNullException("keyValue");
             if (keyValue.Length == 0)
@@ -393,12 +395,12 @@ namespace System.Security.Cryptography.X509Certificates {
 
         // Try to find OID info within a specific group, and if that doesn't work fall back to all
         // groups for compatibility with previous frameworks
-        internal static string FindOidInfoWithFallback(uint key, string value, OidGroup group) {
+        internal static string FindOidInfoWithFallback(uint key, string value, Cryptography.OidGroup group) {
             string info = FindOidInfo(key, value, group);
 
             // If we couldn't find it in the requested group, then try again in all groups
-            if (info == null && group != OidGroup.All) {
-                info = FindOidInfo(key, value, OidGroup.All);
+            if (info == null && group != Cryptography.OidGroup.All) {
+                info = FindOidInfo(key, value, Cryptography.OidGroup.All);
             }
 
             return info;
@@ -484,7 +486,7 @@ error:
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
 #endif
-        internal static X509Certificate2Collection GetCertificates(SafeCertStoreHandle safeCertStoreHandle) {
+        internal static X509Certificate2Collection GetCertificates(Cryptography.SafeCertStoreHandle safeCertStoreHandle) {
             X509Certificate2Collection collection = new X509Certificate2Collection();
             IntPtr pEnumContext = CAPI.CertEnumCertificatesInStore(safeCertStoreHandle, IntPtr.Zero);
             while (pEnumContext != IntPtr.Zero) {
@@ -505,7 +507,7 @@ error:
 #if FEATURE_CORESYSTEM
         [SecurityCritical]
 #endif
-        internal static unsafe int VerifyCertificate (SafeCertContextHandle pCertContext,
+        internal static unsafe int VerifyCertificate (Cryptography.SafeCertContextHandle pCertContext,
                                                       OidCollection applicationPolicy,
                                                       OidCollection certificatePolicy,
                                                       X509RevocationMode revocationMode,

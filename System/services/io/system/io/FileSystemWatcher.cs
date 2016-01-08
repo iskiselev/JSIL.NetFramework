@@ -17,6 +17,7 @@ namespace System.IO {
     using System.Security;
     using System.Globalization;
     using System.Runtime.Versioning;
+    using NativeMethods = Microsoft.Win32.NativeMethods;
 
     /// <devdoc>
     ///    <para>Listens to the system directory change notifications and

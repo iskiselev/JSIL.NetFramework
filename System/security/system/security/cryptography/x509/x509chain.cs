@@ -340,7 +340,7 @@ namespace System.Security.Cryptography.X509Certificates {
 
         [SecurityCritical]
         internal static unsafe int BuildChain (IntPtr hChainEngine,
-                                               SafeCertContextHandle pCertContext,
+                                               Cryptography.SafeCertContextHandle pCertContext,
                                                X509Certificate2Collection extraStore, 
                                                OidCollection applicationPolicy,
                                                OidCollection certificatePolicy,
@@ -352,7 +352,7 @@ namespace System.Security.Cryptography.X509Certificates {
             if (pCertContext == null || pCertContext.IsInvalid)
                 throw new ArgumentException(SR.GetString(SR.Cryptography_InvalidContextHandle), "pCertContext");
 
-            SafeCertStoreHandle hCertStore = SafeCertStoreHandle.InvalidHandle;
+            Cryptography.SafeCertStoreHandle hCertStore = Cryptography.SafeCertStoreHandle.InvalidHandle;
             if (extraStore != null && extraStore.Count > 0)
                 hCertStore = X509Utils.ExportToMemoryStore(extraStore);
 
@@ -361,8 +361,8 @@ namespace System.Security.Cryptography.X509Certificates {
             // Initialize the structure size.
             ChainPara.cbSize = (uint) Marshal.SizeOf(ChainPara);
 
-            SafeLocalAllocHandle applicationPolicyHandle = SafeLocalAllocHandle.InvalidHandle;
-            SafeLocalAllocHandle certificatePolicyHandle = SafeLocalAllocHandle.InvalidHandle;
+            Cryptography.SafeLocalAllocHandle applicationPolicyHandle = Cryptography.SafeLocalAllocHandle.InvalidHandle;
+            Cryptography.SafeLocalAllocHandle certificatePolicyHandle = Cryptography.SafeLocalAllocHandle.InvalidHandle;
             try {
                 // Application policy
                 if (applicationPolicy != null && applicationPolicy.Count > 0) {

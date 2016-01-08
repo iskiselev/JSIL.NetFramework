@@ -45,7 +45,7 @@
             {
                 try
                 {
-                    if (NativeMethods.S_OK == UnsafeNativeMethods.CoGetStandardMarshal(ref riid, pUnk, dwDestContext, IntPtr.Zero, mshlflags, out pStandardMarshal))
+                    if (Microsoft.Win32.NativeMethods.S_OK == UnsafeNativeMethods.CoGetStandardMarshal(ref riid, pUnk, dwDestContext, IntPtr.Zero, mshlflags, out pStandardMarshal))
                     {
                         Debug.Assert(pStandardMarshal != null, "Failed to get marshaler for interface '" + riid.ToString() + "', CoGetStandardMarshal returned S_OK");
                         return pStandardMarshal;
@@ -65,7 +65,7 @@
         int UnsafeNativeMethods.IMarshal.GetUnmarshalClass(ref Guid riid, IntPtr pv, int dwDestContext, IntPtr pvDestContext, int mshlflags, out Guid pCid)
         {
             pCid = CLSID_StdMarshal;
-            return NativeMethods.S_OK;
+            return Microsoft.Win32.NativeMethods.S_OK;
         }
         
         /// <include file='doc\StandardOleMarshalObject.uex' path='docs/doc[@for="StandardOleMarshalObject.UnsafeNativeMethods.IMarshal.GetMarshalSizeMax"]/*' />
@@ -122,7 +122,7 @@
             // this should never be called on this interface, but on the standard one handed back by the previous calls.
             Debug.Fail("IMarshal::UnmarshalInterface should not be called.");
             ppv = IntPtr.Zero;
-            return NativeMethods.E_NOTIMPL;
+            return Microsoft.Win32.NativeMethods.E_NOTIMPL;
         }
         
         /// <include file='doc\StandardOleMarshalObject.uex' path='docs/doc[@for="StandardOleMarshalObject.UnsafeNativeMethods.IMarshal.ReleaseMarshalData"]/*' />
@@ -132,7 +132,7 @@
         {
             // this should never be called on this interface, but on the standard one handed back by the previous calls.
             Debug.Fail("IMarshal::ReleaseMarshalData should not be called.");
-            return NativeMethods.E_NOTIMPL;
+            return Microsoft.Win32.NativeMethods.E_NOTIMPL;
         }
         
         /// <include file='doc\StandardOleMarshalObject.uex' path='docs/doc[@for="StandardOleMarshalObject.UnsafeNativeMethods.IMarshal.DisconnectObject"]/*' />
@@ -142,7 +142,7 @@
         {
             // this should never be called on this interface, but on the standard one handed back by the previous calls.
             Debug.Fail("IMarshal::DisconnectObject should not be called.");
-            return NativeMethods.E_NOTIMPL;
+            return Microsoft.Win32.NativeMethods.E_NOTIMPL;
         }
     }
 }

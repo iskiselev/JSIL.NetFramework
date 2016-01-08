@@ -39,6 +39,7 @@ namespace System.Diagnostics {
     using System.Runtime.Versioning;
     using System.Runtime.CompilerServices;
     using System.Diagnostics.CodeAnalysis;
+    using NativeMethods = Microsoft.Win32.NativeMethods;
 
     /// <devdoc>
     ///    <para>
@@ -842,12 +843,12 @@ namespace System.Diagnostics {
                     hModule = MessageLibraries[dllName] as SafeLibraryHandle;
 
                     if (hModule == null || hModule.IsInvalid) {
-                        hModule = SafeLibraryHandle.LoadLibraryEx(dllName, IntPtr.Zero, NativeMethods.LOAD_LIBRARY_AS_DATAFILE);
+                        //hModule = SafeLibraryHandle.LoadLibraryEx(dllName, IntPtr.Zero, NativeMethods.LOAD_LIBRARY_AS_DATAFILE);
                         MessageLibraries[dllName] = hModule;
                     }
                 }
                 else {
-                    hModule = SafeLibraryHandle.LoadLibraryEx(dllName, IntPtr.Zero, NativeMethods.LOAD_LIBRARY_AS_DATAFILE);
+                    //hModule = SafeLibraryHandle.LoadLibraryEx(dllName, IntPtr.Zero, NativeMethods.LOAD_LIBRARY_AS_DATAFILE);
                 }
 
                 if (hModule.IsInvalid)

@@ -508,7 +508,7 @@ public class EventSchemaTraceListener : TextWriterTraceListener {
         traceWriter.Write(writer.ToString());
     }
 
-    protected override string[] GetSupportedAttributes() {
+    protected internal override string[] GetSupportedAttributes() {
         return new String[]{s_optionBufferSize, s_optionLogRetention, s_optionMaximumFileSize, s_optionMaximumNumberOfFiles};
     }
 

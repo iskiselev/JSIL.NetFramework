@@ -17,6 +17,8 @@ namespace System.Diagnostics {
     using System.Security.Permissions;
     using Microsoft.Win32.SafeHandles;
     using System.Runtime.Versioning;
+    using NativeMethods = Microsoft.Win32.NativeMethods;
+
 //    using System.Windows.Forms;
 
     /// <devdoc>

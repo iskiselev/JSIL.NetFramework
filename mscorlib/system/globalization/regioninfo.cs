@@ -418,14 +418,14 @@ namespace System.Globalization {
         //  if the current UI language is en-US)
         //
         ////////////////////////////////////////////////////////////////////////
-        public virtual String DisplayName 
+        /*public virtual String DisplayName 
         {
             [System.Security.SecuritySafeCritical]  // auto-generated
             get 
             {
                 return (this.m_cultureData.SLOCALIZED----);
             }
-        }
+        */
 
 
         ////////////////////////////////////////////////////////////////////////

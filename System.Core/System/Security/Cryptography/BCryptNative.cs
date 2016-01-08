@@ -288,7 +288,7 @@ namespace System.Security.Cryptography {
                 if (!s_haveBcryptSupported)
                 {
                     // Attempt to load bcrypt.dll to see if the BCrypt CNG APIs are available on the machine
-                    using (SafeLibraryHandle bcrypt = Microsoft.Win32.UnsafeNativeMethods.LoadLibraryEx("bcrypt", IntPtr.Zero, 0)) {
+                    using (Microsoft.Win32.SafeLibraryHandle bcrypt = Microsoft.Win32.UnsafeNativeMethods.LoadLibraryEx("bcrypt", IntPtr.Zero, 0)) {
                         s_bcryptSupported = !bcrypt.IsInvalid;
                         s_haveBcryptSupported = true;
                     }

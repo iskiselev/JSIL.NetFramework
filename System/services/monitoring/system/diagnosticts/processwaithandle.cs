@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 
 namespace System.Diagnostics {
+    using NativeMethods = Microsoft.Win32.NativeMethods;
+
     internal class ProcessWaitHandle : WaitHandle {
 
         [ResourceExposure(ResourceScope.None)]

@@ -35,13 +35,13 @@ namespace System.Security.Cryptography {
         private SafeCapiKeyHandle m_key;
         private PaddingMode m_paddingMode;
         [SecurityCritical]
-        private SafeCspHandle m_provider;
+        private Microsoft.Win32.SafeHandles.SafeCspHandle m_provider;
 
         [System.Security.SecurityCritical]
         [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "Reviewed")]
         public CapiSymmetricAlgorithm(int blockSize,
                                       int feedbackSize,
-                                      SafeCspHandle provider,
+                                      Microsoft.Win32.SafeHandles.SafeCspHandle provider,
                                       SafeCapiKeyHandle key,
                                       byte[] iv,
                                       CipherMode cipherMode,

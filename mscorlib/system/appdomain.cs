@@ -605,7 +605,7 @@ namespace System {
             }
 
             // for perf, we don't intialize the _compatFlags dictionary when we don't need to.  However, we do need to make a 
-            // note that we've run this method, because IsCompatibilityFlagsSet needs to return different values for the
+            // note that we've run this method, because Is CompatibilityFlagsSet needs to return different values for the
             // case where the compat flags have been setup.
             Contract.Assert(!_compatFlagsInitialized);
             _compatFlagsInitialized = true;

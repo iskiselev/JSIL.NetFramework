@@ -12,6 +12,7 @@ namespace System.ComponentModel.Design {
     using System.Runtime.InteropServices;
     using System.Runtime.Serialization;
     using System.Security.Permissions;
+    using NativeMethods = Microsoft.Win32.NativeMethods;
 
 
     /// <devdoc>

@@ -28,7 +28,8 @@ namespace System.CodeDom.Compiler {
     using System.Runtime.CompilerServices;
     using System.Runtime.ConstrainedExecution;
     using System.Runtime.Versioning;
-        
+    using NativeMethods = Microsoft.Win32.NativeMethods;
+
     /// <devdoc>
     ///    <para>
     ///       Provides command execution functions for the CodeDom compiler.

@@ -7,6 +7,8 @@ using System.Net.Configuration;
 
 namespace System.Net
 {
+    using NativeMethods = Microsoft.Win32.NativeMethods;
+
     // This class uses WinHttp APIs only to find, download and execute the PAC file.
     internal sealed class WinHttpWebProxyFinder : BaseWebProxyFinder
     {

@@ -139,7 +139,7 @@ namespace Microsoft.Win32.SafeHandles {
 #if !FEATURE_CORESYSTEM
         [ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
 #endif
-        internal void SetParentCsp(SafeCspHandle parentCsp) {
+        internal void SetParentCsp(Microsoft.Win32.SafeHandles.SafeCspHandle parentCsp) {
             bool addedRef = false;
             RuntimeHelpers.PrepareConstrainedRegions();
             try {

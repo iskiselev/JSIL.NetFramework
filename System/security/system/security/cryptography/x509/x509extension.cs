@@ -18,7 +18,7 @@ namespace System.Security.Cryptography.X509Certificates {
     public class X509Extension : AsnEncodedData {
         private bool m_critical = false;
 
-        internal X509Extension(string oid) : base (new Oid(oid, OidGroup.ExtensionOrAttribute, false)) {}
+        internal X509Extension(string oid) : base (new Oid(oid, Cryptography.OidGroup.ExtensionOrAttribute, false)) {}
 
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
@@ -27,7 +27,7 @@ namespace System.Security.Cryptography.X509Certificates {
             CAPI.CERT_EXTENSION extension = (CAPI.CERT_EXTENSION) Marshal.PtrToStructure(pExtension, typeof(CAPI.CERT_EXTENSION));
             m_critical = extension.fCritical;
             string oidValue = extension.pszObjId;
-            m_oid = new Oid(oidValue, OidGroup.ExtensionOrAttribute, false);
+            m_oid = new Oid(oidValue, Cryptography.OidGroup.ExtensionOrAttribute, false);
             byte[] rawData = new byte[extension.Value.cbData];
             if (extension.Value.pbData != IntPtr.Zero)
                 Marshal.Copy(extension.Value.pbData, rawData, 0, rawData.Length);
@@ -36,7 +36,7 @@ namespace System.Security.Cryptography.X509Certificates {
 
         protected X509Extension() : base () {}
 
-        public X509Extension (string oid, byte[] rawData, bool critical) : this (new Oid(oid, OidGroup.ExtensionOrAttribute, true), rawData, critical) {}
+        public X509Extension (string oid, byte[] rawData, bool critical) : this (new Oid(oid, Cryptography.OidGroup.ExtensionOrAttribute, true), rawData, critical) {}
 
         public X509Extension (AsnEncodedData encodedExtension, bool critical) : this (encodedExtension.Oid, encodedExtension.RawData, critical) {}
 
@@ -327,7 +327,7 @@ namespace System.Security.Cryptography.X509Certificates {
             for (int index = 0; index < pEnhKeyUsage.cUsageIdentifier; index++) {
                 IntPtr pszOid = Marshal.ReadIntPtr(new IntPtr((long) pEnhKeyUsage.rgpszUsageIdentifier + index * Marshal.SizeOf(typeof(IntPtr))));
                 string oidValue = Marshal.PtrToStringAnsi(pszOid);
-                Oid oid = new Oid(oidValue, OidGroup.ExtensionOrAttribute, false);
+                Oid oid = new Oid(oidValue, Cryptography.OidGroup.ExtensionOrAttribute, false);
                 m_enhancedKeyUsages.Add(oid);
             }
 
@@ -600,8 +600,8 @@ namespace System.Security.Cryptography.X509Certificates {
 #if FEATURE_CORESYSTEM
         [SecuritySafeCritical]
 #endif
-        internal unsafe X509ExtensionCollection(SafeCertContextHandle safeCertContextHandle) {
-            using (SafeCertContextHandle certContext = CAPI.CertDuplicateCertificateContext(safeCertContextHandle)) {
+        internal unsafe X509ExtensionCollection(Cryptography.SafeCertContextHandle safeCertContextHandle) {
+            using (Cryptography.SafeCertContextHandle certContext = CAPI.CertDuplicateCertificateContext(safeCertContextHandle)) {
                 CAPI.CERT_CONTEXT pCertContext = *((CAPI.CERT_CONTEXT*) certContext.DangerousGetHandle());
                 CAPI.CERT_INFO pCertInfo = (CAPI.CERT_INFO) Marshal.PtrToStructure(pCertContext.pCertInfo, typeof(CAPI.CERT_INFO));
                 uint cExtensions = pCertInfo.cExtension;
@@ -634,7 +634,7 @@ namespace System.Security.Cryptography.X509Certificates {
         public X509Extension this[string oid] {
             get {
                 // If we were passed the friendly name, retrieve the value string.
-                string oidValue = X509Utils.FindOidInfoWithFallback(CAPI.CRYPT_OID_INFO_NAME_KEY, oid, OidGroup.ExtensionOrAttribute);
+                string oidValue = X509Utils.FindOidInfoWithFallback(CAPI.CRYPT_OID_INFO_NAME_KEY, oid, Cryptography.OidGroup.ExtensionOrAttribute);
                 if (oidValue == null)
                     oidValue = oid;
 

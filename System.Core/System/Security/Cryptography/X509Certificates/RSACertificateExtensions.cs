@@ -96,7 +96,7 @@ namespace System.Security.Cryptography.X509Certificates
 
         private static uint OidToAlgorithmId(Oid oid)
         {
-            using (SafeLocalAllocHandle oidHandle = X509Utils.StringToAnsiPtr(oid.Value))
+            using (SafeLocalAllocHandle oidHandle = Cryptography.X509Utils.StringToAnsiPtr(oid.Value))
             {
                 CapiNative.CRYPT_OID_INFO oidInfo = CapiNative.CryptFindOIDInfo(CapiNative.CRYPT_OID_INFO_OID_KEY, oidHandle, 0);
                 return oidInfo.Algid;

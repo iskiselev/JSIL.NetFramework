@@ -863,7 +863,7 @@ namespace System.Security.Cryptography {
                 if (!s_haveNcryptSupported)
                 {
                     // Attempt to load ncrypt.dll to see if the NCrypt CNG APIs are available on the machine
-                    using (SafeLibraryHandle ncrypt = Microsoft.Win32.UnsafeNativeMethods.LoadLibraryEx("ncrypt", IntPtr.Zero, 0)) {
+                    using (Microsoft.Win32.SafeLibraryHandle ncrypt = Microsoft.Win32.UnsafeNativeMethods.LoadLibraryEx("ncrypt", IntPtr.Zero, 0)) {
                         s_ncryptSupported = !ncrypt.IsInvalid;
                         s_haveNcryptSupported = true;
                     }

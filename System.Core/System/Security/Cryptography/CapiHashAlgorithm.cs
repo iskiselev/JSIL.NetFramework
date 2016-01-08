@@ -20,7 +20,7 @@ namespace System.Security.Cryptography {
     internal sealed class CapiHashAlgorithm : IDisposable {
         private CapiNative.AlgorithmId m_algorithmId;
         [SecurityCritical]
-        private SafeCspHandle m_cspHandle;
+        private Microsoft.Win32.SafeHandles.SafeCspHandle m_cspHandle;
         [SecurityCritical]
         private SafeCapiHashHandle m_hashHandle;
         

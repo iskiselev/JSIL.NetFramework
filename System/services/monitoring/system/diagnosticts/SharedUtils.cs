@@ -20,7 +20,8 @@ namespace System.Diagnostics {
     using System.Runtime.InteropServices;
     using Microsoft.Win32.SafeHandles;
     using System.Diagnostics.CodeAnalysis;
-    
+    using NativeMethods = Microsoft.Win32.NativeMethods;
+
     internal static class SharedUtils {
         
         internal const int UnknownEnvironment = 0;

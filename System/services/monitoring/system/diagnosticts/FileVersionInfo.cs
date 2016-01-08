@@ -16,6 +16,7 @@ namespace System.Diagnostics {
     using System;
     using System.Globalization;
     using System.Runtime.Versioning;
+    using NativeMethods = Microsoft.Win32.NativeMethods;
 
     /// <devdoc>
     ///    <para>Provides version information for a physical file on disk.</para>

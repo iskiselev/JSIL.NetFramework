@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8494A065-0028-4C68-A7AA-6D753B420C83}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>System.Configuration</RootNamespace>
+    <AssemblyName>System.Configuration</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NoStdLib>true</NoStdLib>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <CommonDefineConstants>FEATURE_EXCEPTIONDISPATCHINFO;FEATURE_COMINTEROP;FEATURE_CAS_POLICY;FEATURE_RWLOCK;FEATURE_REMOTING;FEATURE_SERIALIZATION;FEATURE_CLICKONCE;FEATURE_MACL;FEATURE_CRYPTO;FEATURE_CORRUPTING_EXCEPTIONS;FEATURE_METHOD_RENTAL;GENERICS_WORK;FEATURE_FUSION;FEATURE_COMINTEROP_WINRT_MANAGED_ACTIVATION;ARRAY_GENERIC_METHODS;FEATURE_IMPERSONATION;FEATURE_COMPRESSEDSTACK;FEATURE_APTCA;FEATURE_COMINTEROP_APARTMENT_SUPPORT;FEATURE_USE_LCID;FEATURE_WIN32_REGISTRY;FEATURE_REFLECTION_ONLY_LOAD;FEATURE_ASCII;FEATURE_APPX;FEATURE_RANDOMIZED_STRING_HASHING;FEATURE_HOSTED_BINDER</CommonDefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;$(CommonDefineConstants)</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(CommonDefineConstants)</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\System.Configuration\System\Configuration\ConfigurationProperty.cs">
+      <Link>ConfigurationProperty.cs</Link>
+    </Compile>
+    <Compile Include="..\System.Configuration\System\Configuration\ConfigurationPropertyCollection.cs">
+      <Link>ConfigurationPropertyCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\System.Configuration\System\Configuration\Internal\IConfigErrorInfo.cs">
+      <Link>IConfigErrorInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\System.Configuration\System\Configuration\Internal\IConfigurationManagerHelper.cs">
+      <Link>IConfigurationManagerHelper.cs</Link>
+    </Compile>
+    <Compile Include="Configuration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mscorlib\mscorlib.csproj">
+      <Project>{f1fe2248-41d8-44a4-8073-257b67d2af11}</Project>
+      <Name>mscorlib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -21,7 +21,8 @@ namespace System.Diagnostics {
     using System.Security.AccessControl;
     using System.Collections.Generic;
     using System.Runtime.Versioning;
-    
+    using NativeMethods = Microsoft.Win32.NativeMethods;
+
     [HostProtection(Synchronization=true, SharedState=true)]
     internal sealed class SharedPerformanceCounter {
         private const int MaxSpinCount = 5000;
