@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyDelaySignAttribute(true)]
 [assembly: InternalsVisibleTo("System, PublicKey=00000000000000000400000000000000")]
 [assembly: InternalsVisibleTo("System.Core, PublicKey=00000000000000000400000000000000")]
+[assembly: AssemblyVersion("4.0.0.42")]
 
 namespace System
 {
