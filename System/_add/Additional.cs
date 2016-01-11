@@ -2001,6 +2001,7 @@ namespace System
         internal const string event_ParallelQueryEnd = "event_ParallelQueryEnd";
         internal const string event_ParallelQueryFork = "event_ParallelQueryFork";
         internal const string event_ParallelQueryJoin = "event_ParallelQueryJoin";
+
         public static string GetString(string name, params object[] args)
         {
             return name;

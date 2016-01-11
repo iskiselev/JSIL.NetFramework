@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2AE6A86F-E634-46F3-9B06-C0376B37FC31}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>System.Runtime.Serialization</RootNamespace>
+    <AssemblyName>System.Runtime.Serialization</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NoStdLib>true</NoStdLib>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <CommonDefineConstants>FEATURE_EXCEPTIONDISPATCHINFO;FEATURE_COMINTEROP;FEATURE_CAS_POLICY;FEATURE_RWLOCK;FEATURE_REMOTING;FEATURE_SERIALIZATION;FEATURE_CLICKONCE;FEATURE_MACL;FEATURE_CRYPTO;FEATURE_CORRUPTING_EXCEPTIONS;FEATURE_METHOD_RENTAL;GENERICS_WORK;FEATURE_FUSION;FEATURE_COMINTEROP_WINRT_MANAGED_ACTIVATION;ARRAY_GENERIC_METHODS;FEATURE_IMPERSONATION;FEATURE_COMPRESSEDSTACK;FEATURE_APTCA;FEATURE_COMINTEROP_APARTMENT_SUPPORT;FEATURE_USE_LCID;FEATURE_WIN32_REGISTRY;FEATURE_REFLECTION_ONLY_LOAD;FEATURE_ASCII;FEATURE_APPX;FEATURE_RANDOMIZED_STRING_HASHING;FEATURE_HOSTED_BINDER;FEATURE_ASYNC_IO;NEW_EXPERIMENTAL_ASYNC_IO;FEATURE_X509_SECURESTRINGS;FEATURE_UTF32</CommonDefineConstants>
+    <CompilerResponseFile>..\binaries\common.rsp</CompilerResponseFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="System\Runtime\Serialization\AppSettings.cs" />
+    <Compile Include="System\Runtime\Serialization\Attributes.cs" />
+    <Compile Include="System\Runtime\Serialization\BitFlagsGenerator.cs" />
+    <Compile Include="System\Runtime\Serialization\ClassDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\CodeExporter.cs" />
+    <Compile Include="System\Runtime\Serialization\CodeGenerator.cs" />
+    <Compile Include="System\Runtime\Serialization\CollectionDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\CollectionDataContractAttribute.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\ConfigurationStrings.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\DataContractSerializerSection.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\DeclaredTypeElement.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\DeclaredTypeElementCollection.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\DeclaredTypeValidator.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\DeclaredTypeValidatorAttribute.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\NetDataContractSerializerSection.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\ParameterElement.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\ParameterElementCollection.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\Properties.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\SerializationSectionGroup.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\TypeElement.cs" />
+    <Compile Include="System\Runtime\Serialization\Configuration\TypeElementCollection.cs" />
+    <Compile Include="System\Runtime\Serialization\ContractCodeDomInfo.cs" />
+    <Compile Include="System\Runtime\Serialization\ContractNamespaceAttribute.cs" />
+    <Compile Include="System\Runtime\Serialization\DataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\DataContractAttribute.cs" />
+    <Compile Include="System\Runtime\Serialization\DataContractResolver.cs" />
+    <Compile Include="System\Runtime\Serialization\DataContractSerializer.cs" />
+    <Compile Include="System\Runtime\Serialization\DataContractSerializerSettings.cs" />
+    <Compile Include="System\Runtime\Serialization\DataContractSet.cs" />
+    <Compile Include="System\Runtime\Serialization\DataMember.cs" />
+    <Compile Include="System\Runtime\Serialization\DataMemberAttribute.cs" />
+    <Compile Include="System\Runtime\Serialization\DateTimeFormat.cs" />
+    <Compile Include="System\Runtime\Serialization\DateTimeOffsetAdapter.cs" />
+    <Compile Include="System\Runtime\Serialization\Diagnostics\TraceCode.cs" />
+    <Compile Include="System\Runtime\Serialization\Diagnostics\TraceUtility.cs" />
+    <Compile Include="System\Runtime\Serialization\DictionaryGlobals.cs" />
+    <Compile Include="System\Runtime\Serialization\EmitTypeInformation.cs" />
+    <Compile Include="System\Runtime\Serialization\EnumDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\EnumMemberAttribute.cs" />
+    <Compile Include="System\Runtime\Serialization\ExportOptions.cs" />
+    <Compile Include="System\Runtime\Serialization\ExtensionDataObject.cs" />
+    <Compile Include="System\Runtime\Serialization\ExtensionDataReader.cs" />
+    <Compile Include="System\Runtime\Serialization\GenericParameterDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\Globals.cs" />
+    <Compile Include="System\Runtime\Serialization\HybridObjectCache.cs" />
+    <Compile Include="System\Runtime\Serialization\IDataContractSurrogate.cs" />
+    <Compile Include="System\Runtime\Serialization\IExtensibleDataObject.cs" />
+    <Compile Include="System\Runtime\Serialization\IgnoreDataMemberAttribute.cs" />
+    <Compile Include="System\Runtime\Serialization\ImportOptions.cs" />
+    <Compile Include="System\Runtime\Serialization\InvalidDataContractException.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\ByteArrayHelperWithString.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\DataContractJsonSerializer.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\DataContractJsonSerializerSettings.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\IXmlJsonReaderInitializer.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\IXmlJsonWriterInitializer.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonByteArrayDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonClassDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonCollectionDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonEncodingStreamWrapper.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonEnumDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonFormatGeneratorStatics.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonFormatReaderGenerator.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonFormatWriterGenerator.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonGlobals.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonNodeType.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonObjectDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonQNameDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonReaderDelegator.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonReaderWriterFactory.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonStringDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonUriDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonWriterDelegator.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\JsonXmlDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\XmlJsonReader.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\XmlJsonWriter.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\XmlObjectSerializerReadContextComplexJson.cs" />
+    <Compile Include="System\Runtime\Serialization\Json\XmlObjectSerializerWriteContextComplexJson.cs" />
+    <Compile Include="System\Runtime\Serialization\KnownTypeAttribute.cs" />
+    <Compile Include="System\Runtime\Serialization\KnownTypeDataContractResolver.cs" />
+    <Compile Include="System\Runtime\Serialization\NetDataContractSerializer.cs" />
+    <Compile Include="System\Runtime\Serialization\ObjectReferenceStack.cs" />
+    <Compile Include="System\Runtime\Serialization\ObjectToIdCache.cs" />
+    <Compile Include="System\Runtime\Serialization\PrimitiveDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\SchemaExporter.cs" />
+    <Compile Include="System\Runtime\Serialization\SchemaHelper.cs" />
+    <Compile Include="System\Runtime\Serialization\SchemaImporter.cs" />
+    <Compile Include="System\Runtime\Serialization\ScopedKnownTypes.cs" />
+    <Compile Include="System\Runtime\Serialization\SerializationMode.cs" />
+    <Compile Include="System\Runtime\Serialization\SerializationPermissionNotRequiredAttribute.cs" />
+    <Compile Include="System\Runtime\Serialization\SerializationTrace.cs" />
+    <Compile Include="System\Runtime\Serialization\SpecialTypeDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\SurrogateDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\TypeInformation.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlDataContract.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlFormatGeneratorStatics.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlFormatReaderGenerator.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlFormatWriterGenerator.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlObjectSerializer.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlObjectSerializerContext.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlObjectSerializerReadContext.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlObjectSerializerReadContextComplex.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlObjectSerializerWriteContext.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlObjectSerializerWriteContextComplex.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlReaderDelegator.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlSerializableReader.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlSerializableServices.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlSerializableWriter.cs" />
+    <Compile Include="System\Runtime\Serialization\XmlWriterDelegator.cs" />
+    <Compile Include="System\Runtime\Serialization\XPathQueryGenerator.cs" />
+    <Compile Include="System\Runtime\Serialization\XsdDataContractExporter.cs" />
+    <Compile Include="System\Runtime\Serialization\XsdDataContractImporter.cs" />
+    <Compile Include="System\Text\Base64Encoding.cs" />
+    <Compile Include="System\Text\BinHexEncoding.cs" />
+    <Compile Include="System\Text\SurrogateChar.cs" />
+    <Compile Include="System\Xml\ArrayHelper.cs" />
+    <Compile Include="System\Xml\EncodingStreamWrapper.cs" />
+    <Compile Include="System\Xml\IFragmentCapableXmlDictionaryWriter.cs" />
+    <Compile Include="System\Xml\IStreamProvider.cs" />
+    <Compile Include="System\Xml\IXmlDictionary.cs" />
+    <Compile Include="System\Xml\PrefixHandle.cs" />
+    <Compile Include="System\Xml\StringHandle.cs" />
+    <Compile Include="System\Xml\UniqueID.cs" />
+    <Compile Include="System\Xml\ValueHandle.cs" />
+    <Compile Include="System\Xml\XmlBaseReader.cs" />
+    <Compile Include="System\Xml\XmlBaseWriter.cs" />
+    <Compile Include="System\Xml\XmlBinaryNodeType.cs" />
+    <Compile Include="System\Xml\XmlBinaryReader.cs" />
+    <Compile Include="System\Xml\XmlBinaryReaderSession.cs" />
+    <Compile Include="System\Xml\XmlBinaryWriter.cs" />
+    <Compile Include="System\Xml\XmlBinaryWriterSession.cs" />
+    <Compile Include="System\Xml\XmlBufferReader.cs" />
+    <Compile Include="System\Xml\XmlC14NWriter.cs" />
+    <Compile Include="System\Xml\XmlConverter.cs" />
+    <Compile Include="System\Xml\XmlDelegatedReader.cs" />
+    <Compile Include="System\Xml\XmlDelegatedWriter.cs" />
+    <Compile Include="System\Xml\XmlDictionary.cs" />
+    <Compile Include="System\Xml\XmlDictionaryReader.cs" />
+    <Compile Include="System\Xml\XmlDictionaryReaderQuotas.cs" />
+    <Compile Include="System\Xml\XmlDictionaryString.cs" />
+    <Compile Include="System\Xml\XmlDictionaryWriter.cs" />
+    <Compile Include="System\Xml\XmlExceptionHelper.cs" />
+    <Compile Include="System\Xml\XmlMtomReader.cs" />
+    <Compile Include="System\Xml\XmlMtomWriter.cs" />
+    <Compile Include="System\Xml\XmlNodeWriter.cs" />
+    <Compile Include="System\Xml\XmlNodeWriterWriteBase64TextArgs.cs" />
+    <Compile Include="System\Xml\XmlSigningNodeWriter.cs" />
+    <Compile Include="System\Xml\XmlStreamNodeWriter.cs" />
+    <Compile Include="System\Xml\XmlUTF8TextReader.cs" />
+    <Compile Include="System\Xml\XmlUTF8TextWriter.cs" />
+    <Compile Include="System\Xml\XmlWriteBase64AsyncArgs.cs" />
+    <Compile Include="TD.Designer.cs" />
+    <Compile Include="_add\Additional.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mscorlib\mscorlib.csproj">
+      <Project>{f1fe2248-41d8-44a4-8073-257b67d2af11}</Project>
+      <Name>mscorlib</Name>
+      <Aliases>global</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\SMDiagnostics\SMDiagnostics.csproj">
+      <Project>{8eef6fa5-7bab-44ee-85f0-21e6ef917412}</Project>
+      <Name>SMDiagnostics</Name>
+      <Aliases>global</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\System.ServiceModel.Internals\System.ServiceModel.Internals.csproj">
+      <Project>{f863dc6f-2760-4cc2-9c81-7bb6d3803d94}</Project>
+      <Name>System.ServiceModel.Internals</Name>
+      <Aliases>global</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\System\System.csproj">
+      <Project>{4fec9877-bf7d-44f7-ad66-644863ca66dd}</Project>
+      <Name>System</Name>
+      <Aliases>global</Aliases>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

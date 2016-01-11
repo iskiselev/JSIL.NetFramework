@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F863DC6F-2760-4CC2-9C81-7BB6D3803D94}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>System</RootNamespace>
+    <AssemblyName>System.ServiceModel.Internals</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NoStdLib>true</NoStdLib>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <CommonDefineConstants>FEATURE_EXCEPTIONDISPATCHINFO;FEATURE_COMINTEROP;FEATURE_CAS_POLICY;FEATURE_RWLOCK;FEATURE_REMOTING;FEATURE_SERIALIZATION;FEATURE_CLICKONCE;FEATURE_MACL;FEATURE_CRYPTO;FEATURE_CORRUPTING_EXCEPTIONS;FEATURE_METHOD_RENTAL;GENERICS_WORK;FEATURE_FUSION;FEATURE_COMINTEROP_WINRT_MANAGED_ACTIVATION;ARRAY_GENERIC_METHODS;FEATURE_IMPERSONATION;FEATURE_COMPRESSEDSTACK;FEATURE_APTCA;FEATURE_COMINTEROP_APARTMENT_SUPPORT;FEATURE_USE_LCID;FEATURE_WIN32_REGISTRY;FEATURE_REFLECTION_ONLY_LOAD;FEATURE_ASCII;FEATURE_APPX;FEATURE_RANDOMIZED_STRING_HASHING;FEATURE_HOSTED_BINDER;FEATURE_ASYNC_IO;NEW_EXPERIMENTAL_ASYNC_IO;FEATURE_X509_SECURESTRINGS;FEATURE_UTF32</CommonDefineConstants>
+    <CompilerResponseFile>..\binaries\common.rsp</CompilerResponseFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mscorlib\mscorlib.csproj">
+      <Project>{f1fe2248-41d8-44a4-8073-257b67d2af11}</Project>
+      <Name>mscorlib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\System\System.csproj">
+      <Project>{4fec9877-bf7d-44f7-ad66-644863ca66dd}</Project>
+      <Name>System</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="System\Runtime\ActionItem.cs" />
+    <Compile Include="System\Runtime\AssertHelper.cs" />
+    <Compile Include="System\Runtime\AsyncCompletionResult.cs" />
+    <Compile Include="System\Runtime\AsyncEventArgs.cs" />
+    <Compile Include="System\Runtime\AsyncEventArgsCallback.cs" />
+    <Compile Include="System\Runtime\AsyncResult.cs" />
+    <Compile Include="System\Runtime\AsyncWaitHandle.cs" />
+    <Compile Include="System\Runtime\BackoffTimeoutHelper.cs" />
+    <Compile Include="System\Runtime\BufferedOutputStream.cs" />
+    <Compile Include="System\Runtime\CallbackException.cs" />
+    <Compile Include="System\Runtime\Collections\HopperCache.cs" />
+    <Compile Include="System\Runtime\Collections\NullableKeyDictionary.cs" />
+    <Compile Include="System\Runtime\Collections\ObjectCache.cs" />
+    <Compile Include="System\Runtime\Collections\ObjectCacheItem.cs" />
+    <Compile Include="System\Runtime\Collections\ObjectCacheSettings.cs" />
+    <Compile Include="System\Runtime\Collections\OrderedDictionary.cs" />
+    <Compile Include="System\Runtime\Collections\ValidatingCollection.cs" />
+    <Compile Include="System\Runtime\CompletedAsyncResult.cs" />
+    <Compile Include="System\Runtime\ComputerNameFormat.cs" />
+    <Compile Include="System\Runtime\DiagnosticStrings.cs" />
+    <Compile Include="System\Runtime\Diagnostics\ActivityControl.cs" />
+    <Compile Include="System\Runtime\Diagnostics\DiagnosticEventProvider.cs" />
+    <Compile Include="System\Runtime\Diagnostics\DiagnosticTraceBase.cs" />
+    <Compile Include="System\Runtime\Diagnostics\DiagnosticTraceSource.cs" />
+    <Compile Include="System\Runtime\Diagnostics\DictionaryTraceRecord.cs" />
+    <Compile Include="System\Runtime\Diagnostics\EtwDiagnosticTrace.cs" />
+    <Compile Include="System\Runtime\Diagnostics\EtwProvider.cs" />
+    <Compile Include="System\Runtime\Diagnostics\EventDescriptor.cs" />
+    <Compile Include="System\Runtime\Diagnostics\EventLogCategory.cs" />
+    <Compile Include="System\Runtime\Diagnostics\EventLogEventId.cs" />
+    <Compile Include="System\Runtime\Diagnostics\EventLogger.cs" />
+    <Compile Include="System\Runtime\Diagnostics\EventTraceActivity.cs" />
+    <Compile Include="System\Runtime\Diagnostics\ITraceSourceStringProvider.cs" />
+    <Compile Include="System\Runtime\Diagnostics\PerformanceCounterNameAttribute.cs" />
+    <Compile Include="System\Runtime\Diagnostics\StringTraceRecord.cs" />
+    <Compile Include="System\Runtime\Diagnostics\TraceRecord.cs" />
+    <Compile Include="System\Runtime\DuplicateDetector.cs" />
+    <Compile Include="System\Runtime\ExceptionTrace.cs" />
+    <Compile Include="System\Runtime\FastAsyncCallback.cs" />
+    <Compile Include="System\Runtime\FatalException.cs" />
+    <Compile Include="System\Runtime\Fx.cs" />
+    <Compile Include="System\Runtime\FxCop.cs" />
+    <Compile Include="System\Runtime\HashHelper.cs" />
+    <Compile Include="System\Runtime\IAsyncEventArgs.cs" />
+    <Compile Include="System\Runtime\InputQueue.cs" />
+    <Compile Include="System\Runtime\InternalBufferManager.cs" />
+    <Compile Include="System\Runtime\Interop\SafeEventLogWriteHandle.cs" />
+    <Compile Include="System\Runtime\Interop\UnsafeNativeMethods.cs" />
+    <Compile Include="System\Runtime\IOThreadCancellationTokenSource.cs" />
+    <Compile Include="System\Runtime\IOThreadScheduler.cs" />
+    <Compile Include="System\Runtime\IOThreadTimer.cs" />
+    <Compile Include="System\Runtime\MruCache.cs" />
+    <Compile Include="System\Runtime\NameGenerator.cs" />
+    <Compile Include="System\Runtime\PartialTrustHelpers.cs" />
+    <Compile Include="System\Runtime\ReadOnlyDictionaryInternal.cs" />
+    <Compile Include="System\Runtime\ReadOnlyKeyedCollection.cs" />
+    <Compile Include="System\Runtime\ScheduleActionItemAsyncResult.cs" />
+    <Compile Include="System\Runtime\SignalGate.cs" />
+    <Compile Include="System\Runtime\SynchronizedPool.cs" />
+    <Compile Include="System\Runtime\TaskExtensions.cs" />
+    <Compile Include="System\Runtime\ThreadNeutralSemaphore.cs" />
+    <Compile Include="System\Runtime\Ticks.cs" />
+    <Compile Include="System\Runtime\TimeoutHelper.cs" />
+    <Compile Include="System\Runtime\TraceChannel.cs" />
+    <Compile Include="System\Runtime\TraceEventLevel.cs" />
+    <Compile Include="System\Runtime\TraceEventOpcode.cs" />
+    <Compile Include="System\Runtime\TraceLevelHelper.cs" />
+    <Compile Include="System\Runtime\TracePayload.cs" />
+    <Compile Include="System\Runtime\TypedAsyncResult.cs" />
+    <Compile Include="System\Runtime\TypeHelper.cs" />
+    <Compile Include="System\Runtime\UrlUtility.cs" />
+    <Compile Include="System\Runtime\WaitCallbackActionItem.cs" />
+    <Compile Include="TraceCore.Designer.cs" />
+    <Compile Include="_add\Additional.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
