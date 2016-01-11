@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>JSIL.NetReferenceCompiled</id>
+    <version>4.0.20160111.1500</version>
+    <authors>Igor Kiselev</authors>
+    <description>>Net framework BCL/CoreFx libraries compiled from ReferenceSource</description>
+    <language>en-US</language>
+    <projectUrl>https://github.com/iskiselev/JSIL</projectUrl>
+    <licenseUrl>https://github.com/iskiselev/JSIL</licenseUrl>
+  </metadata>
+  <files>
+    <file src="..\mscorlib\bin\Release\mscorlib.dll" target="tools" />
+    <file src="..\System\bin\Release\System.dll" target="tools" />
+    <file src="..\System.Core\bin\Release\System.Core.dll" target="tools" />
+    <file src="..\SMDiagnostics\bin\Release\SMDiagnostics.dll" target="tools" />
+    <file src="..\System.ServiceModel.Internals\bin\Release\System.ServiceModel.Internals.dll" target="tools" />
+    <file src="..\System.Runtime.Serialization\bin\Release\System.Runtime.Serialization.dll" target="tools" />
+    <file src="JSIL.NetReferenceCompiled.targets" target="build" />
+  </files>
+</package>

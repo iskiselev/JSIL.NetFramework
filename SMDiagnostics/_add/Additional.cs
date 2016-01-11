@@ -1,9 +1,5 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
-[assembly: AssemblyKeyFile(@"..\binaries\key.snk")]
-[assembly: AssemblyDelaySignAttribute(true)]
-[assembly: AssemblyVersion("4.0.0.42")]
 [assembly: InternalsVisibleTo("System.Runtime.Serialization, PublicKey=00000000000000000400000000000000")]
 
 namespace System.ServiceModel.Diagnostics

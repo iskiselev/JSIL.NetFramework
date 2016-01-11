@@ -1,11 +1,4 @@
-﻿using System.Reflection;
-
-[assembly: AssemblyKeyFile(@"..\binaries\key.snk")]
-[assembly: AssemblyDelaySignAttribute(true)]
-[assembly: AssemblyVersion("4.0.0.42")]
-
-
-namespace System.Runtime.Serialization
+﻿namespace System.Runtime.Serialization
 {
     using System.ServiceModel.Diagnostics;
 

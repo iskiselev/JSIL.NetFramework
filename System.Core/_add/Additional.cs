@@ -1,10 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 
-[assembly: AssemblyKeyFile(@"..\binaries\key.snk")]
-[assembly: AssemblyDelaySignAttribute(true)]
-[assembly: AssemblyVersion("4.0.0.42")]
-
 namespace System.Linq.Expressions
 {
     internal static class Error
