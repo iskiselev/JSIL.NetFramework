@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!-- Build sequence modification -->
+  <Target Name="CopyAutoMapperAssembly"
+          AfterTargets="ResolveAssemblyReferences">
     <ItemGroup>
       <None Include="$(MSBuildThisFileDirectory)..\tools\mscorlib.dll">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -21,4 +22,5 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
+  </Target>
 </Project>
