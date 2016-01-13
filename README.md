@@ -1,4 +1,4 @@
-# .NET Reference Source for JSIL
+# .NET Framework for JSIL
 
 Here next assemblies from [Microsoft .NET Reference Source](https://github.com/Microsoft/referencesource) make compilable:
 mscorlib,
